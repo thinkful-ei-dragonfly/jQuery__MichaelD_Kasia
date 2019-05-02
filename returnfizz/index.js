@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable strict */
 
 function fizzbuzz (num) {
@@ -23,13 +24,12 @@ function fizzbuzzer (countTo) {
   return results;
 }
 
-// fizzbuzzer(15)
 
 function generateDiv(el) {
   let fizzbuzzClass = '';
   if (typeof el === 'string') {
     fizzbuzzClass = el;
-    } 
+  } 
     
   return `
   <div class="fizz-buzz-item ${fizzbuzzClass}">
@@ -45,12 +45,14 @@ function generateResults(fizzbuzzSeq) {
  
 }
 
-console.log(generateResults(fizzbuzzer(5)));
 
 function main(){
- $('#number-chooser').submit( function(event){
-   event.preventDefault();
-   $('#number-choice')
- })
+  $('#number-chooser').submit( function(event) {
+    event.preventDefault();
+    $('.js-results').empty();
+    let countTo = $('#number-choice').val();
+    $('#number-choice').val('');
+    $('.js-results').append(generateResults(fizzbuzzer(countTo)));
+  });
 }
 $(main());
