@@ -4,33 +4,36 @@ function fizzbuzz (num) {
   if (num % 15 ===0) {
     return 'fizzbuzz';
   } else if (num % 5 === 0) {
-    return 'buzz';
+    return 'fizz';
   } else if (num % 3 === 0) {
     return 'buzz';
   } else {
-    return 'bang';
+    return num;
   }
 }
 
 function fizzbuzzer (countTo) {
   const results = [];
   for (let i = 1; i <=countTo; i++) {
-
+    results.push(fizzbuzz(i));
+    console.log(results);
   }
   return results;
 }
 
+fizzbuzzer(15)
+
 function generateDiv(el) {
   let fizzbuzzClass = '';
   if (typeof el === 'string') {
-    fizzbussClass = el;
+    fizzbuzzClass = el;
+    console.log('hello');
   }
   return `
-  <div class="fizz-buzz-item">
-    <span>1</span>
+  <div class="fizz-buzz-item ${fizzbuzzClass}">
+    <span>${el}</span>
   </div>
   `;
-
 }
 
 function generateResults(fizzbuzzSeq) {
@@ -38,5 +41,5 @@ function generateResults(fizzbuzzSeq) {
 
 }
 
-const fizzResults = fizzbuzzer(50);
-console.log()
+
+console.log(generateDiv(15))
