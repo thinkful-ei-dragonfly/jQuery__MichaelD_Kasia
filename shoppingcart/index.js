@@ -2,34 +2,43 @@
 /*$*/
 
 
-function itemIntput(){
-    let item;
-    $('#js-shopping-list-form').submit(event => {
-        event.preventDefault();
-        item = $('shopping-list-entry').val();
-        $('shopping-list-entry').val('')
-        
-    })
-
+function itemIntput() {
+  let item;
+  $('#js-shopping-list-form').submit(event => {
+    event.preventDefault();
+    item = $('#shopping-list-entry').val();
+    $('#shopping-list-entry').val('');
+    console.log(item);
     const html = generateItem(item);
-    
-
-
-    
+    $('.shopping-list').append(html);
+  });
 }
 
-console.log(itemIntput());
+function deleteItem() {
+  $('body').on('click', '.shopping-item-delete', event => {
+    let target = event.currentTarget;
+    target = $(target)
+    let li = target.parent().parent();
+    li.remove();
 
+  });
+}
 
-
-
-
-
+function checkItem() {
+  $('body').on('click', '.shopping-item-toggle', event => {
+    let target = event.currentTarget;
+    target = $(target);
+    let span = target.parent().parent().find('.shopping-item');
+    span.toggleClass('shopping-item__checked');
+    console.log(span);
+    
+  });
+}
 
 
 function generateItem(item) {
-    return ` <li>
-    <span class="shopping-item shopping-item__checked">${item}</span>
+  return ` <li>
+    <span class="shopping-item ">${item}</span>
     <div class="shopping-item-controls">
       <button class="shopping-item-toggle">
         <span class="button-label">check</span>
@@ -39,5 +48,12 @@ function generateItem(item) {
       </button>
     </div>
   </li>`;
-  }
-  console.log(generateItem('apples'));
+}
+
+$(function() {
+  itemIntput();
+  deleteItem();
+  checkItem();
+
+
+});
